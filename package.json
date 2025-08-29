@@ -1,0 +1,47 @@
+{
+  "name": "mastra-first-project",
+  "version": "1.0.0",
+  "description": "Este proyecto es una aplicación de ejemplo que utiliza agentes, herramientas y flujos de trabajo para demostrar una arquitectura modular en TypeScript.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "mastra dev",
+    "build": "mastra build",
+    "start": "mastra start",
+    "lint": "eslint --ext .ts src"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "dependencies": {
+    "@ai-sdk/openai": "^2.0.22",
+    "@mastra/core": "^0.15.2",
+    "@mastra/libsql": "^0.13.7",
+    "@mastra/loggers": "^0.10.9",
+    "@mastra/memory": "^0.14.2",
+    "@mastra/pg": "^0.14.5",
+    "@mastra/rag": "^1.2.2",
+    "ai": "^5.0.26",
+    "axios": "^1.11.0",
+    "mathjs": "^14.6.0",
+    "zod": "^4.1.4"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.14",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-config-standard-with-typescript": "^43.0.1",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-n": "^16.6.2",
+    "eslint-plugin-promise": "^6.6.0",
+    "mastra": "^0.10.12",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}
