@@ -1,8 +1,15 @@
 import { Mastra } from '@mastra/core/mastra'
 import { PinoLogger } from '@mastra/loggers'
 import { LibSQLStore } from '@mastra/libsql'
-import { calculatorAgent, chefAgent, researchAgent, stockAgent, weatherAgent } from '@/agents'
-import { recruitmentWorkflow, weatherWorkflow } from '@/workflows'
+import {
+  calculatorAgent,
+  chefAgent,
+  researchAgent,
+  stockAgent,
+  weatherAgent,
+  binanceAgent,
+} from '@/agents'
+import { recruitmentWorkflow, weatherWorkflow, binanceWorkflow } from '@/workflows'
 // import { PgVector } from '@mastra/pg'
 
 // const pgVector = new PgVector({
@@ -10,8 +17,8 @@ import { recruitmentWorkflow, weatherWorkflow } from '@/workflows'
 // })
 
 export const mastra = new Mastra({
-  workflows: { weatherWorkflow, recruitmentWorkflow },
-  agents: { weatherAgent, calculatorAgent, chefAgent, stockAgent, researchAgent },
+  workflows: { weatherWorkflow, recruitmentWorkflow, binanceWorkflow },
+  agents: { weatherAgent, calculatorAgent, chefAgent, stockAgent, researchAgent, binanceAgent },
   storage: new LibSQLStore({
     // stores telemetry, evals, ... into memory storage, if it needs to persist, change to file:../mastra.db
     url: ':memory:',

@@ -45,3 +45,47 @@ Las contribuciones son bienvenidas. Abre un issue o envía un pull request.
 
 ## Licencia
 MIT
+
+## ToDo's
+1. Binance auth wording: Binance uses API Key and Secret, not SSH keys. Private endpoints require HMAC SHA256 signatures with the API Secret. Ensure keys are managed via environment variables and never logged.
+
+## Binance Workflow Usage
+
+Prerequisites:
+- Set `BINANCE_API_KEY` and `BINANCE_API_SECRET` in `.env`.
+- Optionally set `BINANCE_API_BASE` (defaults to `https://api.binance.com`).
+
+Example: run the workflow programmatically
+
+```ts
+import { mastra } from './src/mastra'
+
+async function run() {
+  const wf = mastra.getWorkflow('binanceWorkflow')
+  const result = await wf.run({ input: { symbol: 'BTCUSDT' } })
+  console.log(result.output.summary)
+}
+
+run().catch(console.error)
+```
+
+Example: use the agent to summarize balances
+
+```ts
+import { mastra } from './src/mastra'
+
+async function runAgent() {
+  const agent = mastra.getAgent('binanceAgent')
+  const res = await agent.generate([
+    { role: 'user', content: 'Muestrame mi balance en Binance' },
+  ])
+  console.log(res.text)
+}
+
+runAgent().catch(console.error)
+```
+
+### Timestamp Sync Notes
+- Binance requires a `timestamp` on all private requests and validates it within a server-side window (`recvWindow`).
+- This project keeps the default window (recommended by Binance) and instead syncs time by calling `/api/v3/time` and retrying once on `-1021 INVALID_TIMESTAMP`.
+- If you still see timestamp errors, ensure your host clock is NTP-synced and network latency is stable. We intentionally avoid increasing `recvWindow` to follow Binance guidance.

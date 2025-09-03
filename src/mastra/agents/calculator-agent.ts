@@ -36,7 +36,7 @@ export const calculatorAgent = new Agent({
       inputSchema: z.object({
         expression: z.string().describe('Mathematical expression to evaluate'),
       }),
-      execute: async ({ context }) => {
+      execute: async ({ context }: { context: { expression: string } }) => {
         const { expression } = context
 
         if (typeof expression !== 'string' || expression === '') {
